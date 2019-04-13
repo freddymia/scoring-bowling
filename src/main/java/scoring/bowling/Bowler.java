@@ -51,7 +51,7 @@ public class Bowler {
 	}
 
 	public String toString() {
-		String output = "";
+		String output = "\n";
 
 		output += this.getOwnershipName() + " final score: " + this.getScoreCard().getFinalScore();
 		output += this.getScoreCard().toString();

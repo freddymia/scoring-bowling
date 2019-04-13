@@ -105,6 +105,7 @@ public class File {
 	}
 
 	private void printMap(Map<String, List<String>> scoreMap) {
+		System.out.println();
 		for (Map.Entry<String, List<String>> entry : scoreMap.entrySet()) {
 			System.out.println(entry.getKey() + " : " + entry.getValue().toString());
 		}
