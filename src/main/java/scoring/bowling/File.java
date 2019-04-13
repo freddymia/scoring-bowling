@@ -11,10 +11,10 @@ import java.util.Map;
 
 public class File {
 
-	private List<Input> docInput;
+	private List<Input> dataFile;
 
 	public File() {
-		this.docInput = null;
+		this.dataFile = null;
 	}
 
 	public void read(String path) {
@@ -35,7 +35,7 @@ public class File {
 				index++;
 			}
 
-			this.setDocInput(docInput);
+			this.setDataFile(docInput);
 
 			bufferedReader.close();
 
@@ -63,7 +63,12 @@ public class File {
 
 			input = new Input();
 			input.setPlayer(data[0]);
-			input.setChance(data[1]);
+
+			if (data[1].equalsIgnoreCase("F")) {
+				input.setChance("0");
+			} else {
+				input.setChance(data[1]);
+			}
 
 		}
 
@@ -71,8 +76,8 @@ public class File {
 	}
 
 	public void printData() {
-		if (this.docInput != null) {
-			for (Input input : docInput) {
+		if (this.dataFile != null) {
+			for (Input input : dataFile) {
 				System.out.println("player: " + input.getPlayer() + " chance: " + input.getChance());
 			}
 
@@ -83,8 +88,8 @@ public class File {
 
 		Map<String, List<String>> scoreMap = new HashMap<>();
 
-		if (this.docInput != null) {
-			for (Input input : docInput) {
+		if (this.dataFile != null) {
+			for (Input input : dataFile) {
 				if (!scoreMap.containsKey(input.getPlayer())) {
 					List<String> chances = new ArrayList<>();
 					chances.add(input.getChance());
@@ -108,15 +113,50 @@ public class File {
 	/**
 	 * @return the docInput
 	 */
-	public List<Input> getDocInput() {
-		return docInput;
+	public List<Input> getDataFile() {
+		return dataFile;
 	}
 
 	/**
 	 * @param docInput the docInput to set
 	 */
-	private void setDocInput(List<Input> docInput) {
-		this.docInput = docInput;
+	private void setDataFile(List<Input> dataFile) {
+		this.dataFile = dataFile;
+	}
+
+}
+
+class Input {
+
+	private String player;
+	private String chance;
+
+	/**
+	 * @return the player
+	 */
+	public String getPlayer() {
+		return player;
+	}
+
+	/**
+	 * @param player the player to set
+	 */
+	public void setPlayer(String player) {
+		this.player = player;
+	}
+
+	/**
+	 * @return the chance
+	 */
+	public String getChance() {
+		return chance;
+	}
+
+	/**
+	 * @param chance the chance to set
+	 */
+	public void setChance(String chance) {
+		this.chance = chance;
 	}
 
 }
